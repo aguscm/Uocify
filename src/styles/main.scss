@@ -1,0 +1,311 @@
+// importar todos los archivos scss de la aplicación
+// (el archivo _variables no lo incluimos porque se llama desde vue.config.js)
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./_base.scss";
+@import "./_auth.scss";
+
+/**
+* Responsive styles
+*/
+
+/*Mobile*/
+@media only screen and (max-width:768px) {
+
+  table td {
+
+    border-top: none !important;
+    padding: .25rem !important;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table td {
+    width: 31%;
+    flex-grow: 1;
+
+  }
+
+  .track-title {
+    width: 100%;
+    font-weight: 700 !important;
+  }
+
+  .track-artist,
+  .track-duration {
+    text-align: right;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .track-artist {
+    order: 1;
+  }
+
+  .track-duration {
+    order: 2;
+  }
+
+  .track-album {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+
+  table td img {
+    display: none;
+  }
+
+  table tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #todo table img,
+  .canciones table img {
+    width: 100%;
+  }
+
+  .tabs li {
+    flex: auto;
+    text-align: center;
+  }
+}
+
+
+body {
+  background-color: #eeeeee;
+  font-family: "Spartan", sans-serif;
+}
+
+/*Estilos de Header*/
+/*
+  header {
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0px 2px 14px 0px rgba(0,0,0,0.1);
+  }
+  
+  .innerHeader {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #logo img {
+    height: 40px;
+    float: left;
+  }
+  
+  #logo:hover {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  
+  #searchBox {
+    margin: 0 10px 0 10px;
+    padding: 7px;
+    border-radius: 10px;
+  }
+  
+  #searchBox form {
+    display: flex;
+    align-items: center;
+  }
+  #searchBox form button {
+    border: none;
+    background: none;
+    height: 100%;
+  }
+  #searchBox form button:hover {
+    color: #aaaaaa;
+  }
+  
+  #searchBox form input{
+    border: none;
+    width: 80%;
+  }
+  #user {
+    margin-left: auto;
+    text-align: right;
+  }
+  
+  #user:hover {
+    color: grey;
+    cursor: pointer;
+  }
+  
+  #username {
+    font-weight: 600;
+    font-size: 10pt;
+  }
+  
+  #user .fa {
+    font-size: 20px;
+    margin-left: 5px;
+  }
+
+  */
+/*Estilos de content*/
+
+main {
+  padding-top: 0px;
+}
+
+.app-container {
+  margin-top: 120px;
+}
+
+.content h1 {
+  font-size: 30px;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.content h1 span {
+  color: #9c9c9c;
+}
+
+.content h2 {
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.content h3 {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.results {
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+  min-width: 320px;
+}
+
+/**
+  *Contenido de las tabs
+  */
+
+.nav-tabs {
+  border-bottom: 1px solid #ebeff3;
+  display: flex;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+a.nav-link {
+  font-weight: 400;
+  color: #495057;
+}
+
+.nav-item {
+  font-size: 14px;
+}
+
+.nav-link.active {
+  font-weight: 700;
+  border: none;
+  border-bottom: 2px solid rgba(255, 25, 63, 0.596) !important;
+}
+
+
+
+/**
+  *Contenido de la tabla
+  */
+.tab-pane h2 {
+  margin-bottom: 20px;
+}
+
+#todo table th,
+.canciones table th {
+  font-size: 14px;
+}
+
+#todo table td,
+.canciones table td {
+  font-weight: 400;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+#todo table img,
+.canciones table img {
+  width: 30px;
+}
+
+.albumslist img {
+  width: 100%;
+  border: 0.5px solid rgb(228, 228, 228);
+}
+
+.albumslist,
+.artistslist {
+  padding: 0px;
+}
+
+.albumslist li,
+.artistslist li {
+  list-style-type: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.aTitleSubtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.artist {
+  text-align: center;
+}
+
+.aTitle {
+  font-weight: 700;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.aSubtitle {
+  font-weight: 400;
+  font-size: 10px;
+}
+
+
+.artistslist img {
+  width: 100%;
+  border: 0.5px solid rgb(228, 228, 228);
+  border-radius: 50%;
+}
+
+.playlists {
+  li {
+    list-style-type: none;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  img {
+    max-width: 100%;
+    border: 0.5px solid rgb(228, 228, 228);
+    border-radius: 20%;
+  }
+}
+
+.itemMusical:hover {
+  -webkit-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  transform: scale(1.02);
+  cursor: pointer;
+}
