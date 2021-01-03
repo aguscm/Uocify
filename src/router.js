@@ -1,6 +1,6 @@
 //Route components
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router';
 import Home from './views/Home.vue';
 import SearchResults from './views/SearchResults.vue';
 import NotFound from './views/NotFound.vue';
@@ -11,47 +11,57 @@ import Artist from './views/Artist.vue';
 
 Vue.use(VueRouter) //instala VueRouter
 
+
 export const routes = [
     {
         path: '',
         name: 'home',
-        component: Home
+        component: Home,
+
     },
     {
         path: '/search',
         name: 'search',
-        component: SearchResults
+        component: SearchResults,
+
     },
     {
         path: '*',
         name: 'notfound',
-        component: NotFound
+        component: NotFound,
+
     },
     {
         path: '/login',
         name: 'login',
-        component: Login
+        component: Login,
+
     },
     {
         path: '/register',
         name: 'register',
-        component: Register
+        component: Register,
+
     },
     {
         path: '/playlist/:id',
         name: 'playlist',
-        component: Playlist
+        component: Playlist,
+
     },
     {
         path: '/artist/:id',
         name: 'artist',
-        component: Artist
+        component: Artist,
+
     },
-]
+];
+
+
 
 const router = new VueRouter({
     mode: 'history',
-    base: process.env.BASE_URL,
+    //base: process.env.BASE_URL,
     routes
   })
 

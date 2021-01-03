@@ -14,7 +14,7 @@
             placeholder="Correo electrónico"
             type="email"
             id="email"
-            class="form-control"        
+            class="form-control"
             v-model="email"
           />
         </div>
@@ -28,49 +28,57 @@
             v-model="password"
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-lg" @click="register">Registrar</button>
+        <button type="submit" class="btn btn-primary btn-lg" @click="register">
+          Registrar
+        </button>
       </form>
-      <p class="text-danger mt-3">{{error}}</p>
+      <p class="text-danger mt-3">{{ error }}</p>
       <p class="auth-bottom">
-        ¿Ya tienes cuenta? <span class="alink"><router-link to="login">Inicia sesión</router-link></span>
+        ¿Ya tienes cuenta?
+        <span class="alink"
+          ><router-link to="login">Inicia sesión</router-link></span
+        >
       </p>
     </section>
   </main>
 </template>
 
 <script>
-
 import firebase from "firebase";
 
 export default {
+  metaInfo() {
+    return {
+      title: 'Registro',
+      titleTemplate: "%s - Uocify",
+    };
+  },
   name: "register",
   data: function () {
     return {
       email: "",
       password: "",
-      error: null
+      error: null,
     };
-    
   },
-  
+
   methods: {
     register: function (e) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(response => {
+        .then((response) => {
           console.log(response); //capturem la resposta del servidor
-          console.log("Nou usuari creat amb el correu: "+response.user.email);
-          this.$router.push('/')
+          console.log("Nou usuari creat amb el correu: " + response.user.email);
+          this.$router.push("/");
         })
         .catch((err) => {
           this.error = err.message;
-        })
+        });
       e.preventDefault();
     },
   },
 };
-
 </script>
 
 <style lang="scss" >

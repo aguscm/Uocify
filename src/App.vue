@@ -13,9 +13,11 @@ import AppHeader from "@/components/AppHeader";
 
 export default {
   name: "App",
+  metaInfo: {
+    title: 'Uocify'
+  },
   components: {
     AppHeader,
-
   },
 };
 </script>

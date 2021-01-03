@@ -26,16 +26,22 @@ import API from "../script/api.js";
 import Loading from "../components/Loading.vue";
 
 export default {
+  //Título de la página
+  metaInfo: {
+    title: 'Millones de canciones a tu disposición',
+    titleTemplate: 'Uocify - %s',
+  },
   components: { Playlists, Loading },
   name: "Home",
   data() {
     return {
-      loading: true,
-      playlists: "",
-      error: false,
+      loading: true, //Si está cargando el json
+      playlists: "", //Json con las playlists
+      error: false, //Si hay error
     };
   },
   methods: {
+    //Carga las playlists en formato JSON a la variable playlists
     loadPlaylists() {
       return (
         API.getPlaylists()

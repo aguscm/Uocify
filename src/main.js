@@ -1,10 +1,14 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import App from './App.vue'
-import { BootstrapVue } from 'bootstrap-vue'
-import './firebase';
-import './script/api';
-import './script/filters';
+import Vue from 'vue';
+import VueMeta from 'vue-meta';
+import VueRouter from 'vue-router';
+import App from './App.vue';
+import { BootstrapVue } from 'bootstrap-vue';
+import './firebase'; //Firebase
+import './script/api'; //API de Deezer
+import './script/filters'; //Filtros
+
+//VueMeta
+Vue.use(VueMeta);
 
 //ROUTER
 import { routes } from './router';

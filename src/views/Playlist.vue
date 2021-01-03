@@ -1,10 +1,12 @@
 <template>
   <main class="page-search results content container-lg">
     <!-- Header de la página de la playlist -->
-    <p class="text-center text-danger" v-if="!loading && error">{{error}}</p>
+    <p class="text-center text-danger" v-if="!loading && error">{{ error }}</p>
     <div class="playlistHeader align-items-center row">
       <loading v-if="loading && !error"></loading>
-      <p v-if="json == 0 && !loading && !error">No se ha encontrado la playlist</p>
+      <p v-if="json == 0 && !loading && !error">
+        No se ha encontrado la playlist
+      </p>
       <div v-if="!loading" class="col-8 col-sm-4 col-md-3 mx-auto">
         <img
           v-if="json"
@@ -50,6 +52,13 @@ import TrackList from "../components/TrackList.vue";
 import Loading from "../components/Loading.vue";
 
 export default {
+  //Título de la página
+  metaInfo() {
+    return {
+      title: this.json.title,
+      titleTemplate: "%s - Uocify",
+    };
+  },
   components: { TrackList, Loading },
   data() {
     return {
@@ -62,10 +71,16 @@ export default {
   methods: {
     //Carga de canciones
     loadPlaylist(destinationId) {
-      return API.getPlaylist(destinationId)
-        .then((response) => ((this.json = response), (this.loading = false)))
-        //Se captura el error si hay y se muestra en la pantalla
-        .catch((err) => ((console.log(err)), (this.error = err), (this.loading = false))); 
+      return (
+        API.getPlaylist(destinationId)
+          .then((response) => ((this.json = response), (this.loading = false)))
+          //Se captura el error si hay y se muestra en la pantalla
+          .catch(
+            (err) => (
+              console.log(err), (this.error = err), (this.loading = false)
+            )
+          )
+      );
     },
   },
   async created() {

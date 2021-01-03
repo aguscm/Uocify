@@ -2,7 +2,9 @@
   <main class="page-search results content container-lg">
     <!-- Header de la página de la artist -->
     <loading v-if="loadingJson"></loading>
-    <p class="text-center text-danger" v-if="!loadingJson && errorJson">{{errorJson}}</p>
+    <p class="text-center text-danger" v-if="!loadingJson && errorJson">
+      {{ errorJson }}
+    </p>
     <p v-if="json.data == 0 && !loadingJson">No se ha encontrado el artista</p>
     <div
       v-if="json && !loadingJson"
@@ -36,7 +38,9 @@
       <div class="container-lg col-12 col-lg-8 order-1">
         <h3>Canciones más escuchadas</h3>
         <loading v-if="loadingSongs"></loading>
-        <p class="text-center text-danger" v-if="!loadingSongs && errorSongs">{{errorSongs}}</p>
+        <p class="text-center text-danger" v-if="!loadingSongs && errorSongs">
+          {{ errorSongs }}
+        </p>
         <p v-if="jsonSongs.data == 0 && !loadingSongs">
           No se han encontrado canciones
         </p>
@@ -46,7 +50,12 @@
       <div class="col-12 col-lg-4 order-5 order-lg-2">
         <h3>Comentarios recientes</h3>
         <loading v-if="loadingComments"></loading>
-        <p class="text-center text-danger" v-if="!loadingComments && errorComments">{{errorComments}}</p>
+        <p
+          class="text-center text-danger"
+          v-if="!loadingComments && errorComments"
+        >
+          {{ errorComments }}
+        </p>
         <p v-if="jsonComments.data == 0 && !loadingComments">
           No se han encontrado comentarios recientes
         </p>
@@ -59,7 +68,9 @@
       <div class="container-lg order-3">
         <h3>Álbumes más escuchados</h3>
         <loading v-if="loadingAlbums"></loading>
-        <p class="text-center text-danger" v-if="!loadingAlbums && errorAlbums">{{errorAlbums}}</p>
+        <p class="text-center text-danger" v-if="!loadingAlbums && errorAlbums">
+          {{ errorAlbums }}
+        </p>
         <p v-if="jsonAlbums.data == 0 && !loadingAlbums">
           No se han encontrado álbumes
         </p>
@@ -72,7 +83,12 @@
       <div class="container-lg order-4">
         <h3>Artistas relacionados</h3>
         <loading v-if="loadingArtists"></loading>
-        <p class="text-center text-danger" v-if="!loadingArtists && errorArtists">{{errorArtists}}</p>
+        <p
+          class="text-center text-danger"
+          v-if="!loadingArtists && errorArtists"
+        >
+          {{ errorArtists }}
+        </p>
         <p v-if="jsonRelatedArtists.data == 0 && !loadingArtists">
           No se han encontrado artistas relacionados
         </p>
@@ -94,6 +110,13 @@ import ArtistComments from "../components/ArtistComments.vue";
 import Loading from "../components/Loading.vue";
 
 export default {
+  //Título de la página
+  metaInfo() {
+    return {
+      title: this.json.name,
+      titleTemplate: "%s - Uocify",
+    };
+  },
   components: { TrackList, AlbumList, Loading, ArtistList, ArtistComments },
   data() {
     return {
@@ -128,6 +151,7 @@ export default {
           )
         );
     },
+    //Carga de las canciones top
     loadArtistTopSongs(topSongsId) {
       return API.getArtistDetail(topSongsId)
         .then(
@@ -143,6 +167,7 @@ export default {
           )
         );
     },
+    //Carga de los top álbumes
     loadArtistTopAlbums(topAlbumsId) {
       return API.getArtistDetail(topAlbumsId)
         .then(
@@ -158,6 +183,7 @@ export default {
           )
         );
     },
+    //Carga de los artistas relacionados
     loadArtistRelated(id) {
       return API.getArtistDetail(id)
         .then(
@@ -173,6 +199,7 @@ export default {
           )
         );
     },
+    //Carga de los comentarios
     loadComments(id) {
       return API.getArtistDetail(id)
         .then(

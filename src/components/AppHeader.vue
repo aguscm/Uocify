@@ -42,6 +42,7 @@
 import firebase from "firebase";
 import SearchBar from "./SearchBar.vue";
 
+
 export default {
   components: { SearchBar },
   name: "AppHeader",

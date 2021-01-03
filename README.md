@@ -1,5 +1,8 @@
 # vue-uocify
 
+## URL of the PWA deployed on Netlify
+[Netlify](https://uocify-acrespo90.netlify.app/).
+
 ## Project setup
 ```
 npm install

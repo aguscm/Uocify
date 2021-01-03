@@ -32,7 +32,7 @@
           Iniciar sesión
         </button>
       </form>
-      <p class="text-danger mt-3">{{error}}</p>
+      <p class="text-danger mt-3">{{ error }}</p>
 
       <p class="auth-bottom">
         ¿No tienes cuenta?
@@ -48,6 +48,12 @@
 import firebase from "firebase";
 
 export default {
+  metaInfo() {
+    return {
+      title: 'Acceso',
+      titleTemplate: "%s - Uocify",
+    };
+  },
   name: "login",
   data: function () {
     return {
@@ -61,13 +67,15 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then(response => {
-          console.log("Sessió iniciada correctament amb el correu: "+response.user.email); //capturem la resposta del servidor
-          this.$router.push("/", () => {}) //Redirigimos a la página de inicio
+        .then((response) => {
+          console.log(
+            "Sessió iniciada correctament amb el correu: " + response.user.email
+          ); //capturem la resposta del servidor
+          this.$router.push("/", () => {}); //Redirigimos a la página de inicio
         })
         .catch((err) => {
           this.error = err.message;
-        })
+        });
 
       e.preventDefault();
     },
@@ -77,5 +85,4 @@ export default {
 
 
 <style lang="scss" >
-
 </style>

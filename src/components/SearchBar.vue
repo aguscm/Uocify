@@ -13,6 +13,7 @@
         class="form-control"
         placeholder="Buscar"
         v-model="inputSearch"
+        required
       />
     </form>
   </div>

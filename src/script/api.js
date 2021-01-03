@@ -45,7 +45,7 @@ function getArtists(q) {
         .then(response => response.json())
         .then(response => response);
 }
-
+//Dado un parámetro, devuelve un array del detalle de un artista
 function getArtistDetail(q) {
     return fetch(url + 'artist/' + q, {
         method: 'GET',

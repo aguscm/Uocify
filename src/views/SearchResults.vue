@@ -7,55 +7,89 @@
       <!-- Página de resultados. No se muestra si no hay nada que mostrar -->
       <div class="results">
         <b-tabs content-class="mt-4">
+          <!-- Todos los resultados -->
           <b-tab id="todo" title="Todo">
             <h3>Canciones</h3>
-            <TrackList v-bind:tracks="tracks.slice(0, 6)" />
+            <TrackList v-if="tracks" v-bind:tracks="tracks.slice(0, 6)" />
             <loading v-if="loadingTracks"></loading>
-            <p class="text-center text-danger" v-if="!loadingTracks && errorTracks">{{errorTracks}}</p>
-            <p v-if="tracksTotal <= 0 && !loadingTracks">
+            <p
+              class="text-center text-danger"
+              v-if="!loadingTracks && errorTracks"
+            >
+              {{ errorTracks }}
+            </p>
+            <p v-else-if="tracksTotal <= 0 && !loadingTracks && !errorTracks">
               No se ha encontrado ninguna canción que coincida con la búsqueda
             </p>
             <h3>Álbumes</h3>
             <loading v-if="loadingAlbums"></loading>
-            <p class="text-center text-danger" v-if="!loadingAlbums && errorAlbums">{{errorAlbums}}</p>
-            <p v-if="albumsTotal <= 0 && !loadingAlbums">
+            <p
+              class="text-center text-danger"
+              v-if="!loadingAlbums && errorAlbums"
+            >
+              {{ errorAlbums }}
+            </p>
+            <p v-else-if="albumsTotal <= 0 && !loadingAlbums && !errorAlbums">
               No se ha encontrado ningún álbum que coincida con la búsqueda
             </p>
-            <AlbumList v-bind:albums="albums.slice(0, 6)" />
+            <AlbumList v-if="albums" v-bind:albums="albums.slice(0, 6)" />
             <h3>Artistas</h3>
             <loading v-if="loadingArtists"></loading>
-            <p class="text-center text-danger" v-if="!loadingArtists && errorArtists">{{errorArtists}}</p>
-            <p v-if="artistsTotal <= 0 && !loadingArtists">
+            <p
+              class="text-center text-danger"
+              v-if="!loadingArtists && errorArtists"
+            >
+              {{ errorArtists }}
+            </p>
+            <p v-else-if="artistsTotal <= 0 && !loadingArtists && !errorArtists">
               No se ha encontrado ningún artista que coincida con la búsqueda
             </p>
-            <ArtistList v-bind:artists="artists.slice(0, 6)" />
+            <ArtistList v-if="artists" v-bind:artists="artists.slice(0, 6)" />
           </b-tab>
+          <!-- Pestaña de canciones -->
           <b-tab title="Canciones">
             <h2>{{ tracksTotal }} canciones</h2>
-            <TrackList v-bind:tracks="tracks" />
+            <TrackList v-if="tracks" v-bind:tracks="tracks" />
             <loading v-if="loadingTracks"></loading>
-            <p class="text-center text-danger" v-if="!loadingTracks && errorTracks">{{errorTracks}}</p>
-            <p v-if="tracksTotal <= 0 && !loadingTracks">
+            <p
+              class="text-center text-danger"
+              v-if="!loadingTracks && errorTracks"
+            >
+              {{ errorTracks }}
+            </p>
+            <p v-else-if="tracksTotal <= 0 && !loadingTracks && !errorTracks">
               No se ha encontrado ninguna canción que coincida con la búsqueda
             </p>
           </b-tab>
+          <!-- Pestaña de Álbumes -->
           <b-tab id="albumes" title="Álbumes">
             <h2>{{ albumsTotal }} álbumes</h2>
             <loading v-if="loadingAlbums"></loading>
-            <p class="text-center text-danger" v-if="!loadingAlbums && errorAlbums">{{errorAlbums}}</p>
-            <p v-if="albumsTotal <= 0 && !loadingAlbums">
+            <p
+              class="text-center text-danger"
+              v-if="!loadingAlbums && errorAlbums"
+            >
+              {{ errorAlbums }}
+            </p>
+            <p v-else-if="albumsTotal <= 0 && !loadingAlbums && !errorAlbums">
               No se ha encontrado ningún álbum que coincida con la búsqueda
             </p>
-            <AlbumList v-bind:albums="albums" />
+            <AlbumList v-if="albums" v-bind:albums="albums" />
           </b-tab>
+          <!-- Pestaña de Artistas -->
           <b-tab id="artistas" title="Artistas">
             <h2>{{ artistsTotal }} artistas</h2>
             <loading v-if="loadingArtists"></loading>
-            <p class="text-center text-danger" v-if="!loadingArtists && errorArtists">{{errorArtists}}</p>
-            <p v-if="artistsTotal <= 0 && !loadingArtists">
+            <p
+              class="text-center text-danger"
+              v-if="!loadingArtists && errorArtists"
+            >
+              {{ errorArtists }}
+            </p>
+            <p v-else-if="artistsTotal <= 0 && !loadingArtists && !errorArtists">
               No se ha encontrado ningún artista que coincida con la búsqueda
             </p>
-            <ArtistList v-bind:artists="artists" />
+            <ArtistList v-if="artists" v-bind:artists="artists" />
           </b-tab>
         </b-tabs>
       </div>
@@ -72,18 +106,29 @@ import ArtistList from "../components/ArtistList.vue";
 import Loading from "../components/Loading.vue";
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$route.query.q+' - Resultados de búsqueda ',
+      titleTemplate: "%s - Uocify",
+    };
+  },
   data() {
     return {
+      //JSON de canciones, álbumes y artistas
       tracks: "",
       albums: "",
       artists: "",
+      //Número total de canciones, álbumes o artistas
       tracksTotal: 0,
       albumsTotal: 0,
       artistsTotal: 0,
+      //Input de la caja de búsqueda, que bebe de la ruta
       inputSearch: this.$route.query.q,
+      //Si están cargándose los datos del JSON
       loadingTracks: true,
       loadingAlbums: true,
       loadingArtists: true,
+      //Si hay errores
       errorTracks: false,
       errorAlbums: false,
       errorArtists: false,
