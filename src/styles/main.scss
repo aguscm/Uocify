@@ -5,9 +5,16 @@
 @import "./_base.scss";
 @import "./_auth.scss";
 
+//Bootstrap override
+.text-danger {
+  color: #f70036 !important;
+}
+
+
 /**
 * Responsive styles
 */
+
 
 /*Mobile*/
 @media only screen and (max-width:768px) {
