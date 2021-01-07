@@ -47,6 +47,7 @@
 import firebase from "firebase";
 
 export default {
+  //Título de la página
   metaInfo() {
     return {
       title: 'Registro',

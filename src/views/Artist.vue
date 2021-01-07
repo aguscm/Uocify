@@ -233,7 +233,7 @@ export default {
   },
   watch: {
     $route: function () {
-      //Se vacían las variables
+      //Se reinician las variables
       this.json = "";
       this.jsonSongs = "";
       this.jsonAlbums = "";
@@ -241,6 +241,11 @@ export default {
       this.jsonComments = "";
       this.destinationId = this.$route.params.id;
       this.loadInfo(this.destinationId);
+      this.errorJson = false;
+      this.errorSongs = false;
+      this.errorAlbums = false;
+      this.errorArtists = false;
+      this.errorComment = false;
     },
   },
 };

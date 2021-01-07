@@ -15,7 +15,6 @@ Vue.filter("secondsToMinutes", function (time) {
 
 //Convierte una cifra en un String que añade un punto cada tres cifras en formato X.XXX.XXX
 Vue.filter("dotNumber", function (number) {
-
     return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
 });
 

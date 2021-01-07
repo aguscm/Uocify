@@ -41,7 +41,9 @@
             >
               {{ errorArtists }}
             </p>
-            <p v-else-if="artistsTotal <= 0 && !loadingArtists && !errorArtists">
+            <p
+              v-else-if="artistsTotal <= 0 && !loadingArtists && !errorArtists"
+            >
               No se ha encontrado ningún artista que coincida con la búsqueda
             </p>
             <ArtistList v-if="artists" v-bind:artists="artists.slice(0, 6)" />
@@ -86,7 +88,9 @@
             >
               {{ errorArtists }}
             </p>
-            <p v-else-if="artistsTotal <= 0 && !loadingArtists && !errorArtists">
+            <p
+              v-else-if="artistsTotal <= 0 && !loadingArtists && !errorArtists"
+            >
               No se ha encontrado ningún artista que coincida con la búsqueda
             </p>
             <ArtistList v-if="artists" v-bind:artists="artists" />
@@ -106,9 +110,10 @@ import ArtistList from "../components/ArtistList.vue";
 import Loading from "../components/Loading.vue";
 
 export default {
+  //Título de la página
   metaInfo() {
     return {
-      title: this.$route.query.q+' - Resultados de búsqueda ',
+      title: this.$route.query.q + " - Resultados de búsqueda ",
       titleTemplate: "%s - Uocify",
     };
   },
@@ -221,6 +226,9 @@ export default {
         this.tracksTotal = 0;
         this.albumsTotal = 0;
         this.artistsTotal = 0;
+        this.errorTracks = false;
+        this.errorAlbums = false;
+        this.errorArtists = false;
         this.inputSearch = this.$route.query.q;
         this.search(this.inputSearch);
       }

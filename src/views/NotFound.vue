@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  //Título de la página
   metaInfo() {
     return {
       title: 'Página no encontrada',
